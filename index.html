@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloe Hotham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #faf9f7;
+            --primary-light: #1a1a1a;
+            --accent-warm: #DD4132;
+            --accent-cool: #DD4132;
+            --accent-rust: #DD4132;
+            --text-dark: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --border-subtle: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: var(--primary-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem 2rem;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent-rust);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-rust);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.8) 0%, rgba(26, 26, 26, 1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(221, 65, 50, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: #0d0d0d;
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(221, 65, 50, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .item-info {
+            padding: 1.5rem;
+        }
+
+        .gallery-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item .item-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .gallery-item .item-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.4rem 0.8rem;
+            background: var(--primary-light);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--accent-warm);
+            color: white;
+            border-color: var(--accent-warm);
+        }
+
+        /* Audio Player */
+        .music-item {
+            background: #0d0d0d;
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .music-item:hover {
+            box-shadow: 0 5px 20px rgba(221, 65, 50, 0.15);
+        }
+
+        .music-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .music-item .music-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .music-item audio {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Writing/Blog Styles */
+        .writing-item {
+            background: #0d0d0d;
+            border: 1px solid var(--border-subtle);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .writing-item:hover {
+            box-shadow: 0 5px 20px rgba(221, 65, 50, 0.15);
+        }
+
+        .writing-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .writing-item .writing-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .writing-item .excerpt {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-rust);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-rust);
+            transition: opacity 0.3s ease;
+        }
+
+        .read-more:hover {
+            opacity: 0.7;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-info {
+            color: white;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .lightbox-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #0d0d0d;
+            padding: 3rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-subtle);
+            background: #0d0d0d;
+            color: var(--text-dark);
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-rust);
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1.25rem 3rem;
+            background: var(--accent-rust);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #c4371d;
+            transform: translateY(-2px);
+        }
+
+        /* Tag Filter */
+        .tag-filter {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tag-filter h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .tag-filter .tags {
+            justify-content: center;
+        }
+
+        .tag.active {
+            background: var(--accent-rust);
+            color: white;
+            border-color: var(--accent-rust);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d0d;
+            color: #b8b8b8;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.65rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* Add New Post Button */
+        .add-post-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-rust);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(221, 65, 50, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 999;
+        }
+
+        .add-post-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(221, 65, 50, 0.6);
+        }
+
+        /* Modal for adding posts */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #0d0d0d;
+            padding: 3rem;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .modal select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-subtle);
+            background: #0d0d0d;
+            color: var(--text-dark);
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal select:focus {
+            outline: none;
+            border-color: var(--accent-rust);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">CSH</div>
+            <ul>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#visual-art" class="nav-link">Visual Art</a></li>
+                <li><a href="#photography" class="nav-link">Photography</a></li>
+                <li><a href="#fibre-art" class="nav-link">Fibre Art</a></li>
+                <li><a href="#music" class="nav-link">Music</a></li>
+                <li><a href="#writing" class="nav-link">Writing</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero active">
+            <div class="hero-content">
+                <h1>Cloe Hotham</h1>
+                <div class="subtitle">Art • Photography • Fibre • Music • Writing</div>
+                <p class="description">
+                    Welcome to my portfolio.
+                </p>
+            </div>
+        </section>
+
+        <!-- Visual Art Section -->
+        <section id="visual-art" class="section">
+            <div class="section-header">
+                <h2>Visual Art</h2>
+                <p>My artworks</p>
+            </div>
+            
+            <div class="tag-filter">
+                <h3>Filter by Tag</h3>
+                <div class="tags" id="visual-art-tags">
+                    <a href="#" class="tag active" data-tag="all">All</a>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="visual-art-gallery">
+                <!-- Your visual art posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Photography Section -->
+        <section id="photography" class="section">
+            <div class="section-header">
+                <h2>Photography</h2>
+                <p>My photography</p>
+            </div>
+
+            <div class="tag-filter">
+                <h3>Filter by Tag</h3>
+                <div class="tags" id="photography-tags">
+                    <a href="#" class="tag active" data-tag="all">All</a>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="photography-gallery">
+                <!-- Your photography posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Fibre Art Section -->
+        <section id="fibre-art" class="section">
+            <div class="section-header">
+                <h2>Fibre Art</h2>
+                <p>My knitting and crochet</p>
+            </div>
+
+            <div class="tag-filter">
+                <h3>Filter by Tag</h3>
+                <div class="tags" id="fibre-art-tags">
+                    <a href="#" class="tag active" data-tag="all">All</a>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="fibre-art-gallery">
+                <!-- Your fibre art posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section id="music" class="section">
+            <div class="section-header">
+                <h2>Music & Compositions</h2>
+                <p>My musical work</p>
+            </div>
+
+            <div class="tag-filter">
+                <h3>Filter by Tag</h3>
+                <div class="tags" id="music-tags">
+                    <a href="#" class="tag active" data-tag="all">All</a>
+                </div>
+            </div>
+
+            <div id="music-gallery">
+                <!-- Your music posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Writing Section -->
+        <section id="writing" class="section">
+            <div class="section-header">
+                <h2>Writing</h2>
+                <p>My writings</p>
+            </div>
+
+            <div class="tag-filter">
+                <h3>Filter by Tag</h3>
+                <div class="tags" id="writing-tags">
+                    <a href="#" class="tag active" data-tag="all">All</a>
+                </div>
+            </div>
+
+            <div id="writing-gallery">
+                <!-- Your writing posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>I'd love to hear from you</p>
+            </div>
+
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Add Post Button -->
+    <button class="add-post-btn" id="add-post-btn" title="Add New Post">+</button>
+
+    <!-- Add Post Modal -->
+    <div class="modal" id="add-post-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2>Add New Post</h2>
+            <form id="add-post-form">
+                <div class="form-group">
+                    <label for="post-category">Category</label>
+                    <select id="post-category" required>
+                        <option value="visual-art">Visual Art</option>
+                        <option value="photography">Photography</option>
+                        <option value="fibre-art">Fibre Art</option>
+                        <option value="music">Music</option>
+                        <option value="writing">Writing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="post-title">Title</label>
+                    <input type="text" id="post-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-date">Date</label>
+                    <input type="date" id="post-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-description">Description</label>
+                    <textarea id="post-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-image">Image URL (for visual posts)</label>
+                    <input type="url" id="post-image" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label for="post-audio">Audio URL (for music)</label>
+                    <input type="url" id="post-audio" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label for="post-tags">Tags (comma-separated)</label>
+                    <input type="text" id="post-tags" placeholder="abstract, acrylic, experimental">
+                </div>
+                <button type="submit" class="submit-btn">Add Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <img id="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Cloe Savannah Hotham. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section, .hero');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Update active states
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDescription = document.getElementById('lightbox-description');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.gallery-item img')) {
+                const item = e.target.closest('.gallery-item');
+                const img = item.querySelector('img');
+                const title = item.querySelector('h3').textContent;
+                const description = item.querySelector('.item-description').textContent;
+
+                lightboxImage.src = img.src;
+                lightboxTitle.textContent = title;
+                lightboxDescription.textContent = description;
+                lightbox.classList.add('active');
+            }
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Tag filtering
+        function setupTagFiltering(sectionId) {
+            const section = document.getElementById(sectionId);
+            const tagContainer = section.querySelector('.tags');
+            const items = section.querySelectorAll('[data-tags]');
+            const allTags = new Set();
+
+            // Collect all unique tags
+            items.forEach(item => {
+                const tags = item.getAttribute('data-tags').split(',');
+                tags.forEach(tag => allTags.add(tag.trim()));
+            });
+
+            // Create tag filter buttons
+            allTags.forEach(tag => {
+                const tagLink = document.createElement('a');
+                tagLink.href = '#';
+                tagLink.className = 'tag';
+                tagLink.setAttribute('data-tag', tag);
+                tagLink.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+                tagContainer.appendChild(tagLink);
+            });
+
+            // Tag filter functionality
+            tagContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('tag')) {
+                    e.preventDefault();
+                    const selectedTag = e.target.getAttribute('data-tag');
+
+                    // Update active state
+                    tagContainer.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    // Filter items
+                    items.forEach(item => {
+                        const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
+                        
+                        if (selectedTag === 'all' || itemTags.includes(selectedTag)) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        }
+
+        // Initialize tag filtering for each section
+        setupTagFiltering('visual-art');
+        setupTagFiltering('photography');
+        setupTagFiltering('fibre-art');
+        setupTagFiltering('music');
+        setupTagFiltering('writing');
+
+        // Add Post Modal
+        const addPostBtn = document.getElementById('add-post-btn');
+        const addPostModal = document.getElementById('add-post-modal');
+        const modalClose = document.getElementById('modal-close');
+        const addPostForm = document.getElementById('add-post-form');
+
+        addPostBtn.addEventListener('click', () => {
+            addPostModal.classList.add('active');
+        });
+
+        modalClose.addEventListener('click', () => {
+            addPostModal.classList.remove('active');
+        });
+
+        addPostModal.addEventListener('click', (e) => {
+            if (e.target === addPostModal) {
+                addPostModal.classList.remove('active');
+            }
+        });
+
+        // Add Post Form Submission
+        addPostForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const category = document.getElementById('post-category').value;
+            const title = document.getElementById('post-title').value;
+            const date = document.getElementById('post-date').value;
+            const description = document.getElementById('post-description').value;
+            const imageUrl = document.getElementById('post-image').value;
+            const audioUrl = document.getElementById('post-audio').value;
+            const tags = document.getElementById('post-tags').value;
+
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric'
+            });
+
+            // Create post based on category
+            if (category === 'music') {
+                addMusicPost(title, formattedDate, description, audioUrl, tags);
+            } else if (category === 'writing') {
+                addWritingPost(title, date, description, tags);
+            } else {
+                addGalleryPost(category, title, formattedDate, description, imageUrl, tags);
+            }
+
+            // Reset form and close modal
+            addPostForm.reset();
+            addPostModal.classList.remove('active');
+            
+            alert('Post added successfully!');
+        });
+
+        function addGalleryPost(category, title, date, description, imageUrl, tags) {
+            const gallery = document.getElementById(`${category}-gallery`);
+            const tagArray = tags.split(',').map(t => t.trim().toLowerCase());
+
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.setAttribute('data-tags', tagArray.join(','));
+
+            item.innerHTML = `
+                <img src="${imageUrl || 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800'}" alt="${title}">
+                <div class="item-info">
+                    <h3>${title}</h3>
+                    <div class="item-date">${date}</div>
+                    <p class="item-description">${description}</p>
+                    <div class="tags">
+                        ${tagArray.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag.charAt(0).toUpperCase() + tag.slice(1)}</a>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            gallery.insertBefore(item, gallery.firstChild);
+        }
+
+        function addMusicPost(title, date, description, audioUrl, tags) {
+            const gallery = document.getElementById('music-gallery');
+            const tagArray = tags.split(',').map(t => t.trim().toLowerCase());
+
+            const item = document.createElement('div');
+            item.className = 'music-item';
+            item.setAttribute('data-tags', tagArray.join(','));
+
+            item.innerHTML = `
+                <h3>${title}</h3>
+                <div class="music-meta">${date}</div>
+                <p class="item-description">${description}</p>
+                <div class="tags">
+                    ${tagArray.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag.charAt(0).toUpperCase() + tag.slice(1)}</a>`).join('')}
+                </div>
+                ${audioUrl ? `<audio controls><source src="${audioUrl}" type="audio/mpeg">Your browser does not support the audio element.</audio>` : ''}
+            `;
+
+            gallery.insertBefore(item, gallery.firstChild);
+        }
+
+        function addWritingPost(title, date, description, tags) {
+            const gallery = document.getElementById('writing-gallery');
+            const tagArray = tags.split(',').map(t => t.trim().toLowerCase());
+
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            const item = document.createElement('div');
+            item.className = 'writing-item';
+            item.setAttribute('data-tags', tagArray.join(','));
+
+            item.innerHTML = `
+                <h3>${title}</h3>
+                <div class="writing-meta">${formattedDate}</div>
+                <div class="excerpt">
+                    <p>${description}</p>
+                </div>
+                <div class="tags">
+                    ${tagArray.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag.charAt(0).toUpperCase() + tag.slice(1)}</a>`).join('')}
+                </div>
+                <a href="#" class="read-more">Read More →</a>
+            `;
+
+            gallery.insertBefore(item, gallery.firstChild);
+        }
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. In production, you would connect this to a backend service.');
+            contactForm.reset();
+        });
+
+        // Save posts to localStorage
+        function savePosts() {
+            const posts = {
+                visualArt: [],
+                photography: [],
+                fibreArt: [],
+                music: [],
+                writing: []
+            };
+
+            // Save functionality would go here
+            localStorage.setItem('portfolioPosts', JSON.stringify(posts));
+        }
+    </script>
+</body>
+</html>
