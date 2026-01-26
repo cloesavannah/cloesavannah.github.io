@@ -225,8 +225,8 @@
         .gallery-item {
             position: relative;
             overflow: hidden;
-            background: #0d0d0d;
-            border: 1px solid var(--border-subtle);
+            background: transparent;
+            border: none;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             cursor: pointer;
         }
@@ -238,7 +238,7 @@
 
         .gallery-item img {
             width: 100%;
-            height: 300px;
+            height: 400px;
             object-fit: cover;
             display: block;
             transition: transform 0.6s ease;
@@ -249,7 +249,22 @@
         }
 
         .gallery-item .item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 1.5rem;
+            background: linear-gradient(to top, rgba(13, 13, 13, 0.95) 0%, rgba(13, 13, 13, 0.9) 70%, transparent 100%);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .item-info {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .gallery-item h3 {
@@ -650,16 +665,16 @@
             </div>
 
             <div class="gallery-grid" id="photography-gallery">
-                <div class="gallery-item" data-tags="city, urban, colour">
-                    <img src="images/photography/25-01-2026-1.jpg" alt="Stratford International">
+                <div class="gallery-item" data-tags="city,urban,colour">
+                    <img src="images/photography/25-01-2026-1.jpg" alt="Stratford International Station">
                     <div class="item-info">
                         <h3>Stratford International</h3>
                         <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Stratford International station at night</p>
+                        <p class="item-description">Stratford International station at dusk</p>
                         <div class="tags">
-                            <a href="#" class="tag" data-tag="city">city</a>
-                            <a href="#" class="tag" data-tag="urban">urban</a>
-                            <a href="#" class="tag" data-tag="colour">colour</a>
+                            <a href="#" class="tag" data-tag="city">City</a>
+                            <a href="#" class="tag" data-tag="urban">Urban</a>
+                            <a href="#" class="tag" data-tag="colour">Colour</a>
                         </div>
                     </div>
                 </div>
@@ -670,7 +685,7 @@
         <section id="fibre-art" class="section">
             <div class="section-header">
                 <h2>Fibre Art</h2>
-                <p>My knitting and crochet</p>
+                <p>Knitting & Crochet</p>
             </div>
 
             <div class="tag-filter">
