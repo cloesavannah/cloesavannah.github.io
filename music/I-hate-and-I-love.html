@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Hate and I Love (String Quartet) - Cloe Hotham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #faf9f7;
+            --primary-light: #1a1a1a;
+            --accent-rust: #DD4132;
+            --text-dark: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --border-subtle: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: var(--primary-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem 2rem;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        nav .back-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        nav .back-link:hover {
+            color: var(--accent-rust);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .work-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 2rem;
+        }
+
+        .work-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .work-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.4rem 0.8rem;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--accent-rust);
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .audio-player {
+            margin: 2rem 0;
+            background: #0d0d0d;
+            padding: 2rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .score-download {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: var(--accent-rust);
+            color: white;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+
+        .score-download:hover {
+            background: #c4371d;
+            transform: translateY(-2px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            background: #0d0d0d;
+            padding: 1.5rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .info-item h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .info-item p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .movement-list {
+            background: #0d0d0d;
+            padding: 2rem;
+            border: 1px solid var(--border-subtle);
+            margin: 1.5rem 0;
+        }
+
+        .movement-list h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .movement {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .movement:last-child {
+            border-bottom: none;
+        }
+
+        .movement-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .movement-details {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background: #0d0d0d;
+            color: #b8b8b8;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .work-title {
+                font-size: 2.5rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">CSH</a>
+            <a href="../index.html#music" class="back-link">← Back to Music</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="work-header">
+            <h1 class="work-title">I Hate and I Love</h1>
+            <div class="work-meta">String Quartet • 2022 • 8 minutes 30</div>
+            <div class="tags">
+                <span class="tag">Chamber Music</span>
+                <span class="tag">String Quartet</span>
+            </div>
+        </div>
+
+        <!-- Audio Player Section -->
+        <div class="section">
+            <h2>Listen</h2>
+            <div class="audio-player">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1248183406&color=%23dd4132&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- About the Work -->
+        <div class="section">
+            <h2>About the Work</h2>
+            <p>"I Hate and I Love" takes its title from the famous two-line poem by the Roman poet Catullus (Carmen 85): "Odi et amo" - translation below. 
+            </p>
+            <p>The piece explores my personal experience of struggling as a student composer, with loving music but finding the process of creation very difficult. 
+            </p>
+            <p>
+                To compose the piece, I stripped out everything except harmony so I could focus on writing expressively without being encumbered by techniques. On reflection, I feel that the use of consistent held chords is inspired very much by the music of Arvo Pärt which has been a tremendous influence on me as a composer and singer. 
+            </p>
+        </div>
+
+        <!-- Structure/Movements
+        <div class="section">
+            <h2>Structure</h2>
+            <div class="movement-list">
+                <h3>Movements / Sections</h3>
+                <div class="movement">
+                    <div class="movement-title">I. [Movement Title]</div>
+                    <div class="movement-details">[Tempo marking] • [Duration]</div>
+                </div>
+                <div class="movement">
+                    <div class="movement-title">II. [Movement Title]</div>
+                    <div class="movement-details">[Tempo marking] • [Duration]</div>
+                </div>
+                Add more movements as needed
+                <p> Single movement.</p>
+            </div> -->
+            
+        </div>
+
+        <!-- Technical Details -->
+        <div class="section">
+            <h2>Technical Details</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Instrumentation</h3>
+                    <p>2 Violins, Viola, Cello<br>(Standard String Quartet)</p>
+                </div>
+                <div class="info-item">
+                    <h3>Duration</h3>
+                    <p>8 minutes 30 seconds</p>
+                </div>
+                <!-- <div class="info-item">
+                    <h3>Difficulty</h3>
+                    <p>Advanced</p>
+                </div> -->
+                <!-- <div class="info-item">
+                    <h3>Key/Tonality</h3>
+                    <p>[Key or "Atonal" or description]</p>
+                </div>
+                <div class="info-item">
+                    <h3>Extended Techniques</h3>
+                    <p>[e.g., Col legno, harmonics, sul ponticello, pizzicato, etc.]</p>
+                </div>
+                <div class="info-item">
+                    <h3>Style</h3>
+                    <p>Contemporary Classical</p>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Catullus Text -->
+        <div class="section">
+            <h2>Inspiration: Catullus, Carmen 85</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Latin Original</h3>
+                    <p style="font-style: italic; line-height: 1.8; font-size: 1.1rem;">
+                        Odi et amo. Quare id faciam fortasse requiris.<br>
+                        Nescio, sed fieri sentio et excrucior.
+                    </p>
+                </div>
+                <div class="info-item">
+                    <h3>English Translation</h3>
+                    <p style="line-height: 1.8;">
+                        I hate and I love. And if you ask me how,<br>
+                        I do not know: I only feel it, and I'm torn in two.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Notes -->
+        <div class="section">
+            <h2>Performance Notes</h2>
+            <p>Vibrato should be kept to a minimum and saved for moments of emotional climax.
+            </p>
+        </div>
+
+        <!-- Score -->
+        <div class="section">
+            <h2>Score</h2>
+            <p>
+            Please find the score below. If you are interested in performing this piece, please get in touch.
+            </p>
+            <a href="scores/IhateandIlove-fullscore-CH.pdf" class="score-download" download>
+                ⬇ I Hate and I Love Score (PDF)
+            </a>
+        </div>
+
+        <!-- Credits -->
+        <div class="section">
+            <h2>Credits</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Composer</h3>
+                    <p>Cloe Savannah Hotham</p>
+                </div>
+                <div class="info-item">
+                    <h3>Inspiration</h3>
+                    <p>Catullus, Carmen 85 (1st century BCE)</p>
+                </div>
+                <div class="info-item">
+                    <h3>Translation</h3>
+                    <p>Translated by Peter Whigham (1966). Published by Penguin Books (2015). </p>
+                </div>
+                <!-- <div class="info-item">
+                    <h3>Premiere</h3>
+                    <p>[Ensemble Name, Location, Date - or "Not yet premiered"]</p>
+                </div> -->
+                <div class="info-item">
+                    <h3>Recording</h3>
+                    <p>Recorded in workshop by the Ligeti Quartet at the Guildhall School of Music & Drama, London</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Cloe Savannah Hotham. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

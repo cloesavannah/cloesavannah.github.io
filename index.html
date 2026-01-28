@@ -390,6 +390,8 @@
         }
 
         .read-more {
+            display: inline-block;
+            margin-top: 1.5rem;
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -398,6 +400,10 @@
             text-decoration: none;
             border-bottom: 1px solid var(--accent-rust);
             transition: opacity 0.3s ease;
+        }
+
+        .read-more:visited {
+            color: var(--accent-rust);
         }
 
         .read-more:hover {
@@ -613,12 +619,13 @@
             <div class="logo">CSH</div>
             <ul>
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#visual-art" class="nav-link">Visual Art</a></li>
-                <li><a href="#photography" class="nav-link">Photography</a></li>
-                <li><a href="#fibre-art" class="nav-link">Fibre Art</a></li>
-                <li><a href="#music" class="nav-link">Music</a></li>
-                <li><a href="#writing" class="nav-link">Writing</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#visual-art.html">Visual Art</a></li>
+                <li><a href="#photography.html">Photography</a></li>
+                <li><a href="#fibre-art.html">Fibre Art</a></li>
+                <li><a href="#music.html">Music</a></li>
+                <li><a href="#writing.html">Writing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -655,123 +662,6 @@
             </div>
         </section>
 
-        <!-- Photography Section -->
-        <section id="photography" class="section">
-            <div class="section-header">
-                <h2>Photography</h2>
-                <p>My photography</p>
-            </div>
-
-            <div class="tag-filter">
-                <h3>Filter by Tag</h3>
-                <div class="tags" id="photography-tags">
-                    <a href="#" class="tag active" data-tag="all">All</a>
-                </div>
-            </div>
-
-            <div class="gallery-grid" id="photography-gallery">
-                <div class="gallery-item" data-tags="urban,colour">
-                    <img src="images/photography/25-01-2026-1.jpg" alt="Stratford International Station">
-                    <div class="item-info">
-                        <h3>Stratford International</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Stratford International station at night</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                            <a href="#" class="tag" data-tag="colour">Colour</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="urban,b&w">
-                    <img src="images/photography/25-01-2026-2.jpg" alt="CCTV">
-                    <div class="item-info">
-                        <h3>CCTV</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Black and white CCTV camera at night</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                            <a href="#" class="tag" data-tag="b&w">B&W</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="urban,colour,architecture,abstract">
-                    <img src="images/photography/25-01-2026-3.jpg" alt="Glass block wall">
-                    <div class="item-info">
-                        <h3>Glass Block Wall</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Abstract glass block wall, London</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                            <a href="#" class="tag" data-tag="colour">Colour</a>
-                            <a href="#" class="tag" data-tag="architecture">Architecture</a>
-                            <a href="#" class="tag" data-tag="abstract">Abstract</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="urban,colour">
-                    <img src="images/photography/25-01-2026-4.jpg" alt="Iron fence with leaf">
-                    <div class="item-info">
-                        <h3>Iron Fence & Leaf</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Wrought iron fence with autumnal leaf</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                            <a href="#" class="tag" data-tag="colour">Colour</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="urban,colour,architecture">
-                    <img src="images/photography/25-01-2026-5.jpg" alt="gallery at night">
-                    <div class="item-info">
-                        <h3>Saffron Gallery</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Saffron Gallery at night</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                            <a href="#" class="tag" data-tag="colour">Colour</a>
-                            <a href="#" class="tag" data-tag="architecture">Architecture</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="b&w,architecture">
-                    <img src="images/photography/25-01-2026-6.jpg" alt="National Portrait Gallery arched stairs, London">
-                    <div class="item-info">
-                        <h3>Gallery Archway</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">National Portrait Gallery arched stairs, London</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="b&w">B&W</a>
-                            <a href="#" class="tag" data-tag="architecture">Architecture</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="nature,colour">
-                    <img src="images/photography/22-06-2025-1.jpg" alt="Peace Lily, Kew Gardens">
-                    <div class="item-info">
-                        <h3>Peace Lily</h3>
-                        <div class="item-date">22/06/2025</div>
-                        <p class="item-description">Peace Lily, Kew Gardens</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="nature">Nature</a>
-                            <a href="#" class="tag" data-tag="colour">Colour</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-tags="b&w,urban">
-                    <img src="images/photography/25-01-2026-7.jpg" alt="bin bag in Central London">
-                    <div class="item-info">
-                        <h3>Bin Bag Outside Corner Shop</h3>
-                        <div class="item-date">25/01/2026</div>
-                        <p class="item-description">Bin bag outside corner shop, Central London</p>
-                        <div class="tags">
-                            <a href="#" class="tag" data-tag="b&w">B&W</a>
-                            <a href="#" class="tag" data-tag="urban">Urban</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Fibre Art Section -->
         <section id="fibre-art" class="section">
             <div class="section-header">
@@ -795,7 +685,7 @@
         <section id="music" class="section">
             <div class="section-header">
                 <h2>Music & Compositions</h2>
-                <p>My musical work</p>
+                <p>Original compositions across various genres and instrumentations</p>
             </div>
 
             <div class="tag-filter">
@@ -806,7 +696,61 @@
             </div>
 
             <div id="music-gallery">
-                <!-- Your music posts will appear here -->
+                <!-- OAK -->
+                <div class="music-item" data-tags="choral,acapella">
+                    <h3>Oak</h3>
+                    <div class="music-meta">SATB • 2025 • 5 minutes 30 seconds</div>
+                    <p class="item-description"></p>
+                    <div class="tags">
+                        <a href="#" class="tag" data-tag="choral">Choral</a>
+                        <a href="#" class="tag" data-tag="acapella">A Capella</a>
+                    </div>
+                    <a href="music/oak-satb.html" class="read-more" style="display: inline-block; margin-top: 1.5rem;">
+                        Listen and View Full Details & Score →
+                    </a>
+                </div>
+
+                <!-- TANTUM ERGO -->
+                <div class="music-item" data-tags="choral,sacred">
+                    <h3>Tantum Ergo</h3>
+                    <div class="music-meta">SATB • 2025 • [Duration]</div>
+                    <p class="item-description"></p>
+                    <div class="tags">
+                        <a href="#" class="tag" data-tag="choral">Choral</a>
+                        <a href="#" class="tag" data-tag="sacred">Sacred</a>
+                    </div>
+                    <a href="music/tantum-ergo.html" class="read-more" style="display: inline-block; margin-top: 1.5rem;">
+                        Listen and View Full Details & Score →
+                    </a>
+                </div>
+
+                <!-- I HATE AND I LOVE -->
+                <div class="music-item" data-tags="chamber,strings">   
+                    <h3>I Hate and I Love</h3>
+                    <div class="music-meta">String Quartet • 2022 • 8 minutes</div>
+                    <p class="item-description"></p>
+                    <div class="tags">
+                        <a href="#" class="tag" data-tag="chamber">Chamber</a>
+                        <a href="#" class="tag" data-tag="strings">Strings</a>
+                    </div>
+                    <a href="music/i-hate-and-i-love.html" class="read-more" style="display: inline-block; margin-top: 1.5rem;">
+                        Listen and View Full Details & Score →
+                    </a>
+                </div>
+
+                <!-- WILDERNESS -->
+                <div class="music-item" data-tags="vocal,chamber">
+                    <h3>Wilderness</h3>
+                    <div class="music-meta">Soprano & Cello • 2019 • [Duration]</div>
+                    <p class="item-description"></p>
+                    <div class="tags">
+                        <a href="#" class="tag" data-tag="vocal">Vocal</a>
+                        <a href="#" class="tag" data-tag="chamber">Chamber</a>
+                    </div>
+                    <a href="music/wilderness.html" class="read-more" style="display: inline-block; margin-top: 1.5rem;">
+                        Listen and View Full Details & Score →
+                    </a>
+                </div>
             </div>
         </section>
 

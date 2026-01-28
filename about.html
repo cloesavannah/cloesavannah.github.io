@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cloe Hotham</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #faf9f7;
+            --primary-light: #1a1a1a;
+            --accent-rust: #DD4132;
+            --text-dark: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --border-subtle: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: var(--primary-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem 2rem;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent-rust);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-rust);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: calc(100vh - 200px);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .about-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .about-header p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .portrait-section {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .portrait {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #0d0d0d;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bio-short {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .bio-short p {
+            margin-bottom: 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--accent-rust);
+        }
+
+        .section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .disciplines {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .discipline-card {
+            background: #0d0d0d;
+            padding: 2rem;
+            border: 1px solid var(--border-subtle);
+            transition: border-color 0.3s ease;
+        }
+
+        .discipline-card:hover {
+            border-color: var(--accent-rust);
+        }
+
+        .discipline-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .discipline-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .discipline-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-rust);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-rust);
+            transition: opacity 0.3s ease;
+        }
+
+        .discipline-link:hover {
+            opacity: 0.7;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            background: #0d0d0d;
+            padding: 1.5rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .info-item h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            margin-top: 0;
+        }
+
+        .info-item p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        footer {
+            background: #0d0d0d;
+            color: #b8b8b8;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portrait-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .disciplines {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CSH</a>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#visual-art">Visual Art</a></li>
+                <li><a href="index.html#photography">Photography</a></li>
+                <li><a href="index.html#fibre-art">Fibre Art</a></li>
+                <li><a href="index.html#music">Music</a></li>
+                <li><a href="index.html#writing">Writing</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="about-header">
+            <h1>About</h1>
+            <p>Multidisciplinary Artist • Composer • Photographer</p>
+        </div>
+
+        <!-- Portrait and Short Bio -->
+        <div class="portrait-section">
+            <div class="portrait">
+                <!-- ADD YOUR PORTRAIT IMAGE HERE -->
+                <!-- <img src="images/portrait.jpg" alt="Cloe Hotham Portrait"> -->
+                <span>[Your Portrait Photo]</span>
+            </div>
+            <div class="bio-short">
+                <p>
+                    [Write your short bio here - 2-3 paragraphs that introduce you as a multidisciplinary artist. This should be the overview that ties together all your practices: visual art, photography, fibre art, music, and writing.]
+                </p>
+                <p>
+                    [Second paragraph - talk about your approach, philosophy, or what connects your different disciplines. What drives your creative practice across all these mediums?]
+                </p>
+                <p>
+                    [Third paragraph - current location, education highlights, or any major accomplishments that span multiple disciplines.]
+                </p>
+            </div>
+        </div>
+
+        <!-- Artistic Disciplines -->
+        <div class="section">
+            <h2>Artistic Practice</h2>
+            <div class="disciplines">
+                <div class="discipline-card">
+                    <h3>Music</h3>
+                    <p>
+                        Composer working across choral, chamber, and vocal music. My compositions explore [your musical themes/approach].
+                    </p>
+                    <a href="index.html#music" class="discipline-link">View Compositions →</a>
+                </div>
+                <div class="discipline-card">
+                    <h3>Visual Art</h3>
+                    <p>
+                        [Brief description of your visual art practice - mediums, themes, approach]
+                    </p>
+                    <a href="index.html#visual-art" class="discipline-link">View Visual Work →</a>
+                </div>
+                <div class="discipline-card">
+                    <h3>Photography</h3>
+                    <p>
+                        [Brief description of your photography - style, subjects, what you explore through the lens]
+                    </p>
+                    <a href="index.html#photography" class="discipline-link">View Photography →</a>
+                </div>
+                <div class="discipline-card">
+                    <h3>Fibre Art</h3>
+                    <p>
+                        [Brief description of your fibre work - techniques, materials, what you create]
+                    </p>
+                    <a href="index.html#fibre-art" class="discipline-link">View Fibre Art →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extended Bio -->
+        <div class="section">
+            <h2>Biography</h2>
+            <p>
+                [Full extended biography - 4-6 paragraphs. This is where you go into detail about your background, education, career development, major influences, and evolution as an artist across all disciplines.]
+            </p>
+            <p>
+                [Education and training - where you studied, significant teachers/mentors, formative experiences]
+            </p>
+            <p>
+                [Career highlights - exhibitions, performances, commissions, publications, awards]
+            </p>
+            <p>
+                [Current work and future directions - what you're working on now, what interests you]
+            </p>
+        </div>
+
+        <!-- Education & Training -->
+        <div class="section">
+            <h2>Education & Training</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Degree/Qualification</h3>
+                    <p>[Degree Name]<br>[Institution Name]<br>[Year]</p>
+                </div>
+                <div class="info-item">
+                    <h3>Degree/Qualification</h3>
+                    <p>[Degree Name]<br>[Institution Name]<br>[Year]</p>
+                </div>
+                <!-- Add more as needed -->
+            </div>
+        </div>
+
+        <!-- Awards & Recognition (Optional) -->
+        <div class="section">
+            <h2>Awards & Recognition</h2>
+            <p>
+                [List major awards, grants, commissions, residencies, fellowships, etc.]
+            </p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li style="margin-bottom: 0.5rem;">[Award Name], [Organization], [Year]</li>
+                <li style="margin-bottom: 0.5rem;">[Award Name], [Organization], [Year]</li>
+                <!-- Add more -->
+            </ul>
+        </div>
+
+        <!-- Artist Statement (Optional) -->
+        <div class="section">
+            <h2>Artist Statement</h2>
+            <p>
+                [Your artistic statement - what drives your work, what you're exploring, why you create across multiple disciplines. This is more philosophical and personal than the bio.]
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2>Get in Touch</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>General Inquiries</h3>
+                    <p>[your.email@example.com]</p>
+                </div>
+                <div class="info-item">
+                    <h3>Location</h3>
+                    <p>[City, Country]</p>
+                </div>
+                <div class="info-item">
+                    <h3>For Commissions</h3>
+                    <p>[commission email or same email]</p>
+                </div>
+                <div class="info-item">
+                    <h3>Social Media</h3>
+                    <p>
+                        <a href="#" style="color: var(--accent-rust); text-decoration: none;">Instagram</a><br>
+                        <a href="#" style="color: var(--accent-rust); text-decoration: none;">SoundCloud</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Cloe Savannah Hotham. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
